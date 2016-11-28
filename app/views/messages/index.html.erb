@@ -3,7 +3,6 @@
     メッセージ一覧
   </div>
  
-    
   <div class="panel-body">
     <% @messages.each do |message|%>
       <span class="label label-info"><%= message.name %></span>
@@ -14,6 +13,18 @@
 </div>
 
 <%= form_for(@message, html: {class: "form-horizontal"}) do |f| %>
+ <% if  @message.errors.present? %><div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+        <% @message.errors.full_messages.each do |full_message| %>
+          <li>
+            <%= full_message %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>  
+    
 <div class="form-group">
   <label for="message_name" class="col-sm-1 control-label">名前</label>
   <div class="col-sm-5">
